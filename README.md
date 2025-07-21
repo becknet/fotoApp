@@ -55,7 +55,8 @@ A secure photo sharing application built with PHP 8.3, MySQL 8, and Bootstrap 5.
 
 5. **Access the application**
    - Main application: http://localhost:8080
-   - Database: Access via `make db-shell` (phpMyAdmin disabled by default)
+   - phpMyAdmin: http://localhost:8081 (username: `app_user`, password: `secure_password`)
+   - Database shell: `make db-shell` for command line access
 
 ## Development Commands
 
@@ -69,6 +70,8 @@ A secure photo sharing application built with PHP 8.3, MySQL 8, and Bootstrap 5.
 | `make analyse` | Run static analysis (PHPStan level 8) |
 | `make shell` | Access PHP container shell |
 | `make db-shell` | Access MySQL shell |
+| `make db-backup` | Create timestamped database backup |
+| `make db-restore FILE=backup.sql` | Restore database from backup file |
 | `make logs` | View container logs |
 
 ## Getting Started Guide
@@ -86,7 +89,8 @@ A secure photo sharing application built with PHP 8.3, MySQL 8, and Bootstrap 5.
 
 - **Making changes**: Edit files locally, changes are reflected immediately
 - **View logs**: `make logs` to debug issues
-- **Access database**: `make db-shell` to run SQL queries
+- **Access database**: `make db-shell` for CLI or http://localhost:8081 for phpMyAdmin
+- **Backup/restore**: `make db-backup` and `make db-restore FILE=backup.sql`
 - **Code quality**: Run `make format` and `make analyse` before committing
 
 ## Project Structure
@@ -214,7 +218,13 @@ make format
 
 ## Recent Updates
 
-### v1.1.0 - Latest
+### v1.2.0 - Latest
+- ✅ **Password change functionality** for logged-in users with secure validation
+- ✅ **phpMyAdmin integration** for visual database management
+- ✅ **Database backup/restore** commands via Makefile
+- ✅ **Enhanced dropdown navigation** with user account options
+
+### v1.1.0
 - ✅ **Fixed namespace issues** in view templates
 - ✅ **Improved navbar layout** with proper user greeting alignment
 - ✅ **Added Apple Silicon support** for ARM64 Docker containers

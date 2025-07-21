@@ -43,21 +43,20 @@ services:
     networks:
       - foto_app_network
 
-# phpmyadmin:
-  #   image: phpmyadmin/phpmyadmin
-  #   platform: linux/arm64
-  #   container_name: foto_app_phpmyadmin
-  #   environment:
-  #     PMA_HOST: db
-  #     PMA_PORT: 3306
-  #     PMA_USER: app_user
-  #     PMA_PASSWORD: secure_password
-  #   ports:
-  #     - "8081:80"
-  #   depends_on:
-  #     - db
-  #   networks:
-  #     - foto_app_network
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: foto_app_phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: app_user
+      PMA_PASSWORD: secure_password
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    networks:
+      - foto_app_network
 
 volumes:
   db_data:
