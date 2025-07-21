@@ -10,42 +10,42 @@
                 <div class="row mb-4">
                     <div class="col-md-4">
                         <img 
-                            src="<?= View::url('/uploads/' . $photo['thumb_path']) ?>" 
+                            src="<?= \App\View::url('/uploads/' . $photo['thumb_path']) ?>" 
                             class="img-fluid rounded" 
-                            alt="<?= View::escape($photo['title']) ?>"
+                            alt="<?= \App\View::escape($photo['title']) ?>"
                         >
                     </div>
                     <div class="col-md-8">
-                        <form method="POST" action="<?= View::url('/photos/' . $photo['id'] . '/update') ?>">
-                            <?= View::csrf() ?>
+                        <form method="POST" action="<?= \App\View::url('/photos/' . $photo['id'] . '/update') ?>">
+                            <?= \App\View::csrf() ?>
                             
                             <div class="mb-3">
                                 <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
                                 <input 
                                     type="text" 
-                                    class="form-control <?= View::error('title') ? 'is-invalid' : '' ?>" 
+                                    class="form-control <?= \App\View::error('title') ? 'is-invalid' : '' ?>" 
                                     id="title" 
                                     name="title" 
-                                    value="<?= View::escape(View::old('title') ?: $photo['title']) ?>"
+                                    value="<?= \App\View::escape(\App\View::old('title') ?: $photo['title']) ?>"
                                     maxlength="140"
                                     required
                                 >
-                                <?php if ($error = View::error('title')): ?>
-                                    <div class="invalid-feedback"><?= View::escape($error) ?></div>
+                                <?php if ($error = \App\View::error('title')): ?>
+                                    <div class="invalid-feedback"><?= \App\View::escape($error) ?></div>
                                 <?php endif; ?>
                             </div>
 
                             <div class="mb-3">
                                 <label for="description" class="form-label">Description</label>
                                 <textarea 
-                                    class="form-control <?= View::error('description') ? 'is-invalid' : '' ?>" 
+                                    class="form-control <?= \App\View::error('description') ? 'is-invalid' : '' ?>" 
                                     id="description" 
                                     name="description" 
                                     rows="4"
                                     maxlength="1000"
-                                ><?= View::escape(View::old('description') ?: $photo['description']) ?></textarea>
-                                <?php if ($error = View::error('description')): ?>
-                                    <div class="invalid-feedback"><?= View::escape($error) ?></div>
+                                ><?= \App\View::escape(\App\View::old('description') ?: $photo['description']) ?></textarea>
+                                <?php if ($error = \App\View::error('description')): ?>
+                                    <div class="invalid-feedback"><?= \App\View::escape($error) ?></div>
                                 <?php endif; ?>
                             </div>
 
@@ -53,19 +53,19 @@
                                 <label for="location" class="form-label">Location</label>
                                 <input 
                                     type="text" 
-                                    class="form-control <?= View::error('location') ? 'is-invalid' : '' ?>" 
+                                    class="form-control <?= \App\View::error('location') ? 'is-invalid' : '' ?>" 
                                     id="location" 
                                     name="location" 
-                                    value="<?= View::escape(View::old('location') ?: $photo['location']) ?>"
+                                    value="<?= \App\View::escape(\App\View::old('location') ?: $photo['location']) ?>"
                                     maxlength="140"
                                 >
-                                <?php if ($error = View::error('location')): ?>
-                                    <div class="invalid-feedback"><?= View::escape($error) ?></div>
+                                <?php if ($error = \App\View::error('location')): ?>
+                                    <div class="invalid-feedback"><?= \App\View::escape($error) ?></div>
                                 <?php endif; ?>
                             </div>
 
                             <div class="d-flex justify-content-between">
-                                <a href="<?= View::url('/photos/' . $photo['id']) ?>" class="btn btn-secondary">Cancel</a>
+                                <a href="<?= \App\View::url('/photos/' . $photo['id']) ?>" class="btn btn-secondary">Cancel</a>
                                 <button type="submit" class="btn btn-primary">Update Photo</button>
                             </div>
                         </form>

@@ -2,8 +2,8 @@
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1>Photo Gallery</h1>
-    <?php if (Session::has('user_id')): ?>
-    <a href="<?= View::url('/upload') ?>" class="btn btn-primary">
+    <?php if (\App\View::auth()): ?>
+    <a href="<?= \App\View::url('/upload') ?>" class="btn btn-primary">
         Upload Photo
     </a>
     <?php endif; ?>
@@ -13,10 +13,10 @@
 <div class="text-center py-5">
     <h3>No photos yet</h3>
     <p class="text-muted">Be the first to upload a photo!</p>
-    <?php if (Session::has('user_id')): ?>
-    <a href="<?= View::url('/upload') ?>" class="btn btn-primary">Upload Photo</a>
+    <?php if (\App\View::auth()): ?>
+    <a href="<?= \App\View::url('/upload') ?>" class="btn btn-primary">Upload Photo</a>
     <?php else: ?>
-    <a href="<?= View::url('/login') ?>" class="btn btn-outline-primary">Login to Upload</a>
+    <a href="<?= \App\View::url('/login') ?>" class="btn btn-outline-primary">Login to Upload</a>
     <?php endif; ?>
 </div>
 <?php else: ?>
@@ -25,28 +25,28 @@
     <?php foreach ($photos as $photo): ?>
     <div class="col-md-4 col-lg-3 mb-4">
         <div class="card">
-            <a href="<?= View::url('/photos/' . $photo['id']) ?>">
+            <a href="<?= \App\View::url('/photos/' . $photo['id']) ?>">
                 <img 
-                    src="<?= View::url('/uploads/' . $photo['thumb_path']) ?>" 
+                    src="<?= \App\View::url('/uploads/' . $photo['thumb_path']) ?>" 
                     class="card-img-top" 
-                    alt="<?= View::escape($photo['title']) ?>"
+                    alt="<?= \App\View::escape($photo['title']) ?>"
                     style="height: 250px; object-fit: cover;"
                 >
             </a>
             <div class="card-body">
                 <h5 class="card-title">
-                    <a href="<?= View::url('/photos/' . $photo['id']) ?>" class="text-decoration-none">
-                        <?= View::escape($photo['title']) ?>
+                    <a href="<?= \App\View::url('/photos/' . $photo['id']) ?>" class="text-decoration-none">
+                        <?= \App\View::escape($photo['title']) ?>
                     </a>
                 </h5>
                 <p class="card-text text-muted small">
-                    By <?= View::escape($photo['user_name']) ?>
+                    By <?= \App\View::escape($photo['user_name']) ?>
                     <br>
                     <?= date('M j, Y', strtotime($photo['created_at'])) ?>
                 </p>
                 <?php if ($photo['description']): ?>
                 <p class="card-text">
-                    <?= View::escape(substr($photo['description'], 0, 100)) ?>
+                    <?= \App\View::escape(substr($photo['description'], 0, 100)) ?>
                     <?= strlen($photo['description']) > 100 ? '...' : '' ?>
                 </p>
                 <?php endif; ?>
@@ -60,7 +60,7 @@
     <ul class="pagination justify-content-center">
         <?php if ($currentPage > 1): ?>
         <li class="page-item">
-            <a class="page-link" href="<?= View::url('/?page=' . ($currentPage - 1)) ?>">Previous</a>
+            <a class="page-link" href="<?= \App\View::url('/?page=' . ($currentPage - 1)) ?>">Previous</a>
         </li>
         <?php endif; ?>
         
@@ -70,7 +70,7 @@
         
         <?php if ($hasMorePhotos): ?>
         <li class="page-item">
-            <a class="page-link" href="<?= View::url('/?page=' . ($currentPage + 1)) ?>">Next</a>
+            <a class="page-link" href="<?= \App\View::url('/?page=' . ($currentPage + 1)) ?>">Next</a>
         </li>
         <?php endif; ?>
     </ul>

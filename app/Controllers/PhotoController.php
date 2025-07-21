@@ -111,7 +111,7 @@ class PhotoController extends Controller
                 return;
             }
 
-            $photoId = $this->photoModel->create(
+            $photoId = $this->photoModel->createPhoto(
                 Session::get('user_id'),
                 $title,
                 $description,

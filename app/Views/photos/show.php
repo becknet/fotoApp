@@ -4,20 +4,20 @@
     <div class="col-lg-8">
         <div class="card">
             <img 
-                src="<?= View::url('/uploads/' . $photo['file_path']) ?>" 
+                src="<?= \App\View::url('/uploads/' . $photo['file_path']) ?>" 
                 class="card-img-top" 
-                alt="<?= View::escape($photo['title']) ?>"
+                alt="<?= \App\View::escape($photo['title']) ?>"
             >
             <div class="card-body">
-                <h1 class="card-title"><?= View::escape($photo['title']) ?></h1>
+                <h1 class="card-title"><?= \App\View::escape($photo['title']) ?></h1>
                 
                 <?php if ($photo['description']): ?>
-                <p class="card-text"><?= View::escape($photo['description']) ?></p>
+                <p class="card-text"><?= \App\View::escape($photo['description']) ?></p>
                 <?php endif; ?>
                 
                 <div class="row text-muted small">
                     <div class="col-md-6">
-                        <strong>Uploaded by:</strong> <?= View::escape($photo['user_name']) ?>
+                        <strong>Uploaded by:</strong> <?= \App\View::escape($photo['user_name']) ?>
                     </div>
                     <div class="col-md-6">
                         <strong>Date:</strong> <?= date('F j, Y \a\t g:i A', strtotime($photo['created_at'])) ?>
@@ -26,7 +26,7 @@
                 
                 <?php if ($photo['location']): ?>
                 <div class="mt-2 text-muted small">
-                    <strong>Location:</strong> <?= View::escape($photo['location']) ?>
+                    <strong>Location:</strong> <?= \App\View::escape($photo['location']) ?>
                 </div>
                 <?php endif; ?>
             </div>
@@ -35,12 +35,12 @@
     
     <div class="col-lg-4">
         <div class="d-grid gap-2">
-            <a href="<?= View::url('/') ?>" class="btn btn-outline-secondary">
+            <a href="<?= \App\View::url('/') ?>" class="btn btn-outline-secondary">
                 ← Back to Gallery
             </a>
             
             <?php if ($isOwner): ?>
-            <a href="<?= View::url('/photos/' . $photo['id'] . '/edit') ?>" class="btn btn-primary">
+            <a href="<?= \App\View::url('/photos/' . $photo['id'] . '/edit') ?>" class="btn btn-primary">
                 Edit Photo
             </a>
             
@@ -76,8 +76,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <form method="POST" action="<?= View::url('/photos/' . $photo['id'] . '/delete') ?>" style="display: inline;">
-                    <?= View::csrf() ?>
+                <form method="POST" action="<?= \App\View::url('/photos/' . $photo['id'] . '/delete') ?>" style="display: inline;">
+                    <?= \App\View::csrf() ?>
                     <button type="submit" class="btn btn-danger">Delete Photo</button>
                 </form>
             </div>

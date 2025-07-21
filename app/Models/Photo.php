@@ -57,7 +57,7 @@ class Photo extends Model
         return $stmt->fetchAll();
     }
 
-    public function create(
+    public function createPhoto(
         int $userId,
         string $title,
         ?string $description,

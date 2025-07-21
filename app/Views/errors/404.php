@@ -4,7 +4,7 @@
     <h1 class="display-1">404</h1>
     <h2>Page Not Found</h2>
     <p class="lead">The page you are looking for could not be found.</p>
-    <a href="<?= View::url('/') ?>" class="btn btn-primary">Go Home</a>
+    <a href="<?= \App\View::url('/') ?>" class="btn btn-primary">Go Home</a>
 </div>
 
 <?php $content = ob_get_clean(); ?>

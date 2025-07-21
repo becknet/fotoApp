@@ -101,7 +101,7 @@ class AuthController extends Controller
             return;
         }
 
-        $userId = $this->userModel->create($name, $email, $password);
+        $userId = $this->userModel->createUser($name, $email, $password);
 
         Session::regenerateId();
         Session::put('user_id', $userId);

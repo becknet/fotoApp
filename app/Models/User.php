@@ -18,7 +18,7 @@ class User extends Model
         return $this->findBy('email', $email);
     }
 
-    public function create(string $name, string $email, string $password): int
+    public function createUser(string $name, string $email, string $password): int
     {
         $data = [
             'name' => $name,

@@ -79,4 +79,37 @@ class View
     {
         return Csrf::meta();
     }
+
+    public static function auth(): bool
+    {
+        return Session::has('user_id');
+    }
+
+    public static function user(): ?array
+    {
+        if (!self::auth()) {
+            return null;
+        }
+
+        return [
+            'id' => Session::get('user_id'),
+            'name' => Session::get('user_name'),
+            'email' => Session::get('user_email'),
+        ];
+    }
+
+    public static function userId(): ?int
+    {
+        return Session::get('user_id');
+    }
+
+    public static function userName(): ?string
+    {
+        return Session::get('user_name');
+    }
+
+    public static function flash(string $key, mixed $default = null): mixed
+    {
+        return Session::flash($key, $default);
+    }
 }

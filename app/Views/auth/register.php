@@ -7,22 +7,22 @@
                 <h4 class="mb-0">Register</h4>
             </div>
             <div class="card-body">
-                <form method="POST" action="<?= View::url('/register') ?>">
-                    <?= View::csrf() ?>
+                <form method="POST" action="<?= \App\View::url('/register') ?>">
+                    <?= \App\View::csrf() ?>
                     
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input 
                             type="text" 
-                            class="form-control <?= View::error('name') ? 'is-invalid' : '' ?>" 
+                            class="form-control <?= \App\View::error('name') ? 'is-invalid' : '' ?>" 
                             id="name" 
                             name="name" 
-                            value="<?= View::escape(View::old('name')) ?>"
+                            value="<?= \App\View::escape(\App\View::old('name')) ?>"
                             maxlength="60"
                             required
                         >
-                        <?php if ($error = View::error('name')): ?>
-                            <div class="invalid-feedback"><?= View::escape($error) ?></div>
+                        <?php if ($error = \App\View::error('name')): ?>
+                            <div class="invalid-feedback"><?= \App\View::escape($error) ?></div>
                         <?php endif; ?>
                     </div>
 
@@ -30,15 +30,15 @@
                         <label for="email" class="form-label">Email</label>
                         <input 
                             type="email" 
-                            class="form-control <?= View::error('email') ? 'is-invalid' : '' ?>" 
+                            class="form-control <?= \App\View::error('email') ? 'is-invalid' : '' ?>" 
                             id="email" 
                             name="email" 
-                            value="<?= View::escape(View::old('email')) ?>"
+                            value="<?= \App\View::escape(\App\View::old('email')) ?>"
                             maxlength="255"
                             required
                         >
-                        <?php if ($error = View::error('email')): ?>
-                            <div class="invalid-feedback"><?= View::escape($error) ?></div>
+                        <?php if ($error = \App\View::error('email')): ?>
+                            <div class="invalid-feedback"><?= \App\View::escape($error) ?></div>
                         <?php endif; ?>
                     </div>
 
@@ -46,14 +46,14 @@
                         <label for="password" class="form-label">Password</label>
                         <input 
                             type="password" 
-                            class="form-control <?= View::error('password') ? 'is-invalid' : '' ?>" 
+                            class="form-control <?= \App\View::error('password') ? 'is-invalid' : '' ?>" 
                             id="password" 
                             name="password" 
                             minlength="8"
                             required
                         >
-                        <?php if ($error = View::error('password')): ?>
-                            <div class="invalid-feedback"><?= View::escape($error) ?></div>
+                        <?php if ($error = \App\View::error('password')): ?>
+                            <div class="invalid-feedback"><?= \App\View::escape($error) ?></div>
                         <?php endif; ?>
                         <div class="form-text">Minimum 8 characters</div>
                     </div>
@@ -79,7 +79,7 @@
                 
                 <p class="text-center mb-0">
                     Already have an account? 
-                    <a href="<?= View::url('/login') ?>">Login here</a>
+                    <a href="<?= \App\View::url('/login') ?>">Login here</a>
                 </p>
             </div>
         </div>
