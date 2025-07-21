@@ -27,19 +27,20 @@ A secure photo sharing application built with PHP 8.3, MySQL 8, and Bootstrap 5.
 
 - Docker and Docker Compose
 - Git
+- **Note**: This project is optimized for Apple Silicon Macs (ARM64) but also works on Intel/AMD64
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/becknet/fotoApp.git
    cd fotoApp
    ```
 
 2. **Setup environment**
    ```bash
    cp .env.example .env
-   # Edit .env file with your database credentials if needed
+   # The default settings work out of the box for Docker development
    ```
 
 3. **Start the development environment**
@@ -54,7 +55,7 @@ A secure photo sharing application built with PHP 8.3, MySQL 8, and Bootstrap 5.
 
 5. **Access the application**
    - Main application: http://localhost:8080
-   - Database admin: http://localhost:8081
+   - Database: Access via `make db-shell` (phpMyAdmin disabled by default)
 
 ## Development Commands
 
@@ -69,6 +70,24 @@ A secure photo sharing application built with PHP 8.3, MySQL 8, and Bootstrap 5.
 | `make shell` | Access PHP container shell |
 | `make db-shell` | Access MySQL shell |
 | `make logs` | View container logs |
+
+## Getting Started Guide
+
+### First Time Setup
+
+1. **Start the containers**: `make dev`
+2. **Install dependencies**: `make install` 
+3. **Open the app**: Visit http://localhost:8080
+4. **Create an account**: Click "Register" to create your first user
+5. **Upload photos**: Once logged in, use "Upload Photo" to add images
+6. **Browse gallery**: View all uploaded photos in the public gallery
+
+### Development Workflow
+
+- **Making changes**: Edit files locally, changes are reflected immediately
+- **View logs**: `make logs` to debug issues
+- **Access database**: `make db-shell` to run SQL queries
+- **Code quality**: Run `make format` and `make analyse` before committing
 
 ## Project Structure
 
@@ -140,6 +159,34 @@ uploads/
         └── uuid-original_thumb.ext
 ```
 
+## Troubleshooting
+
+### Common Issues
+
+**Docker build fails**: 
+- Ensure Docker Desktop is running
+- Try `docker system prune -f` to clean up
+- For Apple Silicon: Make sure ARM64 support is enabled
+
+**Database connection errors**:
+- Check containers are running: `docker-compose ps`
+- Verify database is ready: `make logs`
+- Database takes ~30 seconds to initialize on first run
+
+**Permission errors**:
+- Ensure uploads directory is writable: `chmod 755 uploads/`
+- Check Docker has file access permissions
+
+**PHP errors**:
+- View container logs: `docker-compose logs web`
+- Access container: `make shell` to debug
+
+### Performance Tips
+
+- **Image optimization**: Large images are automatically resized
+- **Development**: Use `make logs` to monitor performance
+- **Production**: Enable PHP OPcache and set `APP_DEBUG=false`
+
 ## Testing
 
 Run the test suite:
@@ -165,6 +212,26 @@ make format
 4. Ensure all security requirements are met
 5. Run `make format` before committing
 
+## Recent Updates
+
+### v1.1.0 - Latest
+- ✅ **Fixed namespace issues** in view templates
+- ✅ **Improved navbar layout** with proper user greeting alignment
+- ✅ **Added Apple Silicon support** for ARM64 Docker containers
+- ✅ **Enhanced error handling** and debugging capabilities
+- ✅ **Working photo upload** with automatic thumbnail generation
+
+### v1.0.0 - Initial Release
+- ✅ Complete MVC architecture with security-first approach
+- ✅ User authentication and session management
+- ✅ Photo upload, editing, and gallery functionality
+- ✅ Docker development environment
+- ✅ Comprehensive testing and code quality tools
+
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+**Made with ❤️ using PHP 8.3, MySQL 8, and Bootstrap 5.3**

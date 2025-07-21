@@ -48,6 +48,17 @@ class User extends Model
         return $this->update($userId, $data);
     }
 
+    public function changePassword(int $userId, string $currentPassword, string $newPassword): bool
+    {
+        $user = $this->findById($userId);
+        
+        if (!$user || !$this->verifyPassword($currentPassword, $user['password_hash'])) {
+            return false;
+        }
+
+        return $this->updatePassword($userId, $newPassword);
+    }
+
     public function verifyPassword(string $password, string $hash): bool
     {
         return password_verify($password, $hash);

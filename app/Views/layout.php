@@ -33,11 +33,15 @@
                 
                 <ul class="navbar-nav">
                     <?php if (\App\View::auth()): ?>
-                    <li class="nav-item d-flex align-items-center">
-                        <span class="navbar-text me-3">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                             Hello, <?= \App\View::escape(\App\View::userName()) ?>!
-                        </span>
-                        <a class="nav-link" href="<?= \App\View::url('/logout') ?>">Logout</a>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?= \App\View::url('/change-password') ?>">Change Password</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="<?= \App\View::url('/logout') ?>">Logout</a></li>
+                        </ul>
                     </li>
                     <?php else: ?>
                     <li class="nav-item">

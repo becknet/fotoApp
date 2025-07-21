@@ -121,4 +121,57 @@ class AuthController extends Controller
 
         $this->redirect('/');
     }
+
+    public function showChangePassword(): void
+    {
+        if (!Session::has('user_id')) {
+            Session::flash('error', 'You must be logged in to change your password.');
+            $this->redirect('/login');
+
+            return;
+        }
+
+        $this->view('auth.change-password', [
+            'title' => 'Change Password - FotoApp',
+        ]);
+    }
+
+    public function changePassword(): void
+    {
+        if (!Session::has('user_id')) {
+            Session::flash('error', 'You must be logged in to change your password.');
+            $this->redirect('/login');
+
+            return;
+        }
+
+        $currentPassword = $_POST['current_password'] ?? '';
+        $newPassword = $_POST['new_password'] ?? '';
+        $confirmPassword = $_POST['new_password_confirmation'] ?? '';
+
+        $errors = $this->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+        ], $_POST);
+
+        if (!empty($errors)) {
+            Session::flash('errors', $errors);
+            $this->back();
+
+            return;
+        }
+
+        $userId = Session::get('user_id');
+        $success = $this->userModel->changePassword($userId, $currentPassword, $newPassword);
+
+        if (!$success) {
+            Session::flash('error', 'Current password is incorrect.');
+            $this->back();
+
+            return;
+        }
+
+        Session::flash('success', 'Password changed successfully!');
+        $this->redirect('/');
+    }
 }

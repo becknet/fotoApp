@@ -44,6 +44,9 @@ $router->get('/register', 'App\\Controllers\\AuthController@showRegister');
 $router->post('/register', 'App\\Controllers\\AuthController@register', ['App\\Middleware\\CsrfMiddleware']);
 $router->get('/logout', 'App\\Controllers\\AuthController@logout');
 
+$router->get('/change-password', 'App\\Controllers\\AuthController@showChangePassword');
+$router->post('/change-password', 'App\\Controllers\\AuthController@changePassword', ['App\\Middleware\\CsrfMiddleware']);
+
 $router->get('/upload', 'App\\Controllers\\PhotoController@create');
 
 $method = $_SERVER['REQUEST_METHOD'];
