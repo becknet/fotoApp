@@ -37,6 +37,33 @@ class PhotoController extends Controller
         ]);
     }
 
+    public function dashboard(): void
+    {
+        if (!Session::has('user_id')) {
+            Session::flash('error', 'You must be logged in to view your dashboard.');
+            $this->redirect('/login');
+
+            return;
+        }
+
+        $userId = Session::get('user_id');
+        $page = max(1, (int) ($_GET['page'] ?? 1));
+        $limit = 20;
+        $offset = ($page - 1) * $limit;
+
+        $photos = $this->photoModel->getPhotosByUser($userId, $limit, $offset);
+        $hasMorePhotos = count($photos) === $limit;
+        $totalPhotos = $this->photoModel->getUserPhotoCount($userId);
+
+        $this->view('photos.dashboard', [
+            'title' => 'My Photos - FotoApp',
+            'photos' => $photos,
+            'currentPage' => $page,
+            'hasMorePhotos' => $hasMorePhotos,
+            'totalPhotos' => $totalPhotos,
+        ]);
+    }
+
     public function show(string $id): void
     {
         $photo = $this->photoModel->findByIdWithUser((int) $id);

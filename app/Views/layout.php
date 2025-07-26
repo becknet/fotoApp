@@ -26,7 +26,10 @@
                     </li>
                     <?php if (\App\View::auth()): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= \App\View::url('/photos/upload') ?>">Upload</a>
+                        <a class="nav-link" href="<?= \App\View::url('/dashboard') ?>">My Photos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= \App\View::url('/upload') ?>">Upload</a>
                     </li>
                     <?php endif; ?>
                 </ul>
