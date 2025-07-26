@@ -12,6 +12,7 @@ A secure photo sharing application built with PHP 8.3, MySQL 8, and Bootstrap 5.
 - 🌐 **Public Gallery** - Browse all photos without authentication
 - 🔐 **Security First** - CSRF protection, XSS prevention, SQL injection protection
 - 🎨 **Rich Metadata** - Title, description, and location for each photo
+- 📊 **User Dashboard** - Personal photo management with quick edit/delete actions
 
 ## Tech Stack
 
@@ -83,7 +84,8 @@ A secure photo sharing application built with PHP 8.3, MySQL 8, and Bootstrap 5.
 3. **Open the app**: Visit http://localhost:8080
 4. **Create an account**: Click "Register" to create your first user
 5. **Upload photos**: Once logged in, use "Upload Photo" to add images
-6. **Browse gallery**: View all uploaded photos in the public gallery
+6. **Manage your photos**: Visit "My Photos" dashboard to edit/delete your uploads
+7. **Browse gallery**: View all uploaded photos in the public gallery
 
 ### Development Workflow
 
@@ -132,6 +134,18 @@ fotoApp/
 - **SQL Injection Protection**: PDO prepared statements only
 - **File Upload Security**: Type validation, size limits, secure naming
 - **Access Control**: Owner-only permissions for photo management
+
+## User Dashboard
+
+The personal dashboard (`/dashboard`) provides authenticated users with:
+
+- **Photo Grid View**: All your uploaded photos in a responsive grid layout
+- **Quick Actions**: Edit and delete buttons directly on each photo card
+- **Photo Statistics**: Display of total photos uploaded
+- **Pagination**: Navigate through multiple pages of photos (20 per page)
+- **Upload Integration**: Quick access to upload new photos
+- **Delete Confirmation**: Safety dialog to prevent accidental deletions
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
 
 ## Database Schema
 
@@ -218,7 +232,14 @@ make format
 
 ## Recent Updates
 
-### v1.2.0 - Latest
+### v1.3.0 - Latest
+- ✅ **User Dashboard** at `/dashboard` for centralized photo management
+- ✅ **Quick Actions** - Edit and delete photos directly from dashboard grid
+- ✅ **Photo Statistics** - Display total uploaded photos count
+- ✅ **Enhanced Navigation** - "My Photos" link for authenticated users
+- ✅ **Improved User Experience** - Streamlined photo management workflow
+
+### v1.2.0
 - ✅ **Password change functionality** for logged-in users with secure validation
 - ✅ **phpMyAdmin integration** for visual database management
 - ✅ **Database backup/restore** commands via Makefile

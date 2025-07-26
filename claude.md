@@ -80,6 +80,8 @@ CREATE TABLE photos (
 - Upload photo ≤ 10 MB with title, description, location.
 - Auto‑create 300 px thumbnail after upload.
 - Everyone can view all photos; only *owner* may edit/delete.
+- User dashboard at `/dashboard` for managing own photos.
+- Quick edit/delete actions from dashboard interface.
 
 # Commands
 
@@ -118,8 +120,25 @@ docker-compose.yml
 - **C8–C12** session handling & DB permissions as specified.
 - **C13–C18** owner‑only edits enforced in `PhotoPolicy.php`.
 
+# Routes
+
+## Public Routes
+- `/` and `/photos` – Public photo gallery (all photos)
+- `/photos/{id}` – Photo detail view
+- `/login`, `/register` – Authentication
+
+## Protected Routes (Authentication Required)
+- `/dashboard` – User's photo management dashboard
+- `/upload` – Photo upload form
+- `/photos/create` – Alternative upload route
+- `/photos/{id}/edit` – Edit photo metadata
+- `/photos/{id}/delete` – Delete photo (POST only)
+- `/change-password` – Change user password
+- `/logout` – End session
+
 # Glossary
 
 - **Owner** – user who created a photo (`photos.user_id`).
 - **Public Gallery** – `/photos` route; no auth required.
 
+- **Dashboard** – `/dashboard` route; auth required, shows user's own photos.
